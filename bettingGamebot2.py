@@ -21,6 +21,8 @@ def rollDice(cnt):
 
 roll = 0
 bank = 500
+lowBank = 500
+highBank = 500
 print('You now have ${} in your bank.'.format(bank))
 bet = 50 
 while (bank > 0 and bank < 1000):
@@ -38,13 +40,18 @@ while (bank > 0 and bank < 1000):
         bank += bet
     if (win == -1):
         bank -= bet
+    if (bank < lowBank): lowBank = bank
+    if (bank > highBank): highBank = bank
+
 if bank == 0:
     print('You went bust! : > (')
+    print("Your highest stake was {}".format(highBank))
     print('Thanks for playing!')
     exit()
 elif bank >= 1000:
     print('You Broke the bank : > }')
     print('You now have ${} in your bank.'.format(bank))
+    print("Your lowest stake was {}".format(lowBank))
     print('Thanks for playing!')
     exit()
 else:
